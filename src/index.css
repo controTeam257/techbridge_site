@@ -1,3 +1,11 @@
+
+/* Import all custom css styles for the project */
+/* Created by Shalom Irumva */
+
+@import '../assets/styles/main.css';
+@import '../assets/styles/header.css';
+@import '../assets/styles/contact.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

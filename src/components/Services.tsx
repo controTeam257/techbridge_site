@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Code, Zap, ArrowRight, Users, Laptop, Database, Star, Award, Target } from 'lucide-react';
+import { BookOpen, Code, Zap, ArrowRight, Users, Laptop, Database, Star, Award, Target, CheckCircle, Check } from 'lucide-react';
 
 const Services = () => {
   const services = [
@@ -15,7 +15,7 @@ const Services = () => {
         "Suivi personnalisé"
       ],
       color: "blue",
-      gradient: "from-blue-500 to-blue-600"
+      gradient: " from-green-500 to-green-600"
     },
     {
       icon: Code,
@@ -28,7 +28,7 @@ const Services = () => {
         "E-commerce"
       ],
       color: "green",
-      gradient: "from-green-500 to-green-600"
+      gradient: "from-[var(--primary)] to-[var(--dark-primary)]"
     },
     {
       icon: Zap,
@@ -41,7 +41,7 @@ const Services = () => {
         "Documentation complète"
       ],
       color: "purple",
-      gradient: "from-purple-500 to-purple-600"
+      gradient: "from-[var(--accent)] to-[var(--dark-accent)]"
     }
   ];
 
@@ -81,11 +81,18 @@ const Services = () => {
     }
   };
 
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="services" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+    <section id="services" className="py-20 relative overflow-hidden">
       {/* Background Animation */}
       <motion.div
-        className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"
+        className="absolute z-80 top-20 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.6, 0.3],
@@ -97,7 +104,22 @@ const Services = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <motion.div
+        className="absolute z-50 top-[10%] left-0 w-[25rem] h-[25rem] bg-[var(--primary-200)] rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-60">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
@@ -107,12 +129,12 @@ const Services = () => {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+            className="text-4xl lg:text-5xl font-bold text-white mb-4"
             variants={itemVariants}
           >
             Nos Services{' '}
             <motion.span
-              className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-[var(--primary)] to-[var(--dark-primary)] bg-clip-text text-transparent"
               animate={{
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
@@ -126,16 +148,16 @@ const Services = () => {
             </motion.span>
           </motion.h2>
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-blue-200 max-w-3xl mx-auto"
             variants={itemVariants}
           >
-            TechBridge Africa vous accompagne dans votre transformation digitale avec des solutions innovantes et adaptées à vos besoins spécifiques.
+            Techbridge Africa vous accompagne dans votre transformation digitale avec des solutions innovantes et adaptées à vos besoins spécifiques.
           </motion.p>
         </motion.div>
 
         {/* Services Grid */}
         <motion.div
-          className="grid md:grid-cols-3 gap-8 mb-16"
+          className="grid md:grid-cols-3 gap-8 mb-16 items-start"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -153,7 +175,7 @@ const Services = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg"
+                  className="absolute inset-0 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -163,17 +185,22 @@ const Services = () => {
                 
                 <div className="relative p-8 h-full">
                   <motion.div
-                    className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-6 shadow-lg`}
+                    className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-full flex items-center justify-center mb-6 shadow-lg`}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <Icon className="w-8 h-8 text-white" />
+                    <Icon 
+                      className="w-6 h-6 text-white" 
+                      style={{ filter: 'drop-shadow(2px 4px 1px rgba(60, 60, 60,0.7))' }} 
+                    />
+
+
                   </motion.div>
                   
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors">
+                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-white transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-blue-100 mb-6 leading-relaxed text-sm">
                     {service.description}
                   </p>
                   
@@ -181,24 +208,27 @@ const Services = () => {
                     {service.features.map((feature, featureIndex) => (
                       <motion.li
                         key={featureIndex}
-                        className="flex items-center text-gray-700"
+                        className="flex items-center space-x-3 text-blue-200"
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: featureIndex * 0.1 }}
                         viewport={{ once: true }}
                       >
                         <motion.div
-                          className={`w-2 h-2 bg-gradient-to-r ${service.gradient} rounded-full mr-3`}
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: featureIndex * 0.2 }}
-                        />
+                        className={`w-5 h-5 rounded-full flex items-center justify-center border-2 border-blue-200  mr-2`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        >
+                        <Check className="w-3 h-3 text-blue-200" strokeWidth={4} />
+                      </motion.div>
                         {feature}
                       </motion.li>
                     ))}
                   </ul>
                   
                   <motion.button
-                    className={`inline-flex items-center text-${service.color}-600 font-semibold group-hover:text-${service.color}-700 transition-colors`}
+                    onClick={scrollToContact}
+                    className={`w-full inline-flex justify-center items-center bg-[var(--primary)] px-8 py-3 text-white rounded-lg shadow-lg`}
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
@@ -217,61 +247,9 @@ const Services = () => {
           })}
         </motion.div>
 
-        {/* Enhanced Stats Section */}
-        <motion.div
-          className="bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl opacity-50"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          
-          <div className="grid md:grid-cols-3 gap-8 text-center relative">
-            {[
-              { icon: Users, title: "Équipe Experte", desc: "Développeurs seniors et formateurs certifiés", color: "blue" },
-              { icon: Laptop, title: "Technologies Modernes", desc: "Stack technologique à jour et performant", color: "green" },
-              { icon: Database, title: "Support 24/7", desc: "Accompagnement continu de vos projets", color: "purple" }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="flex flex-col items-center group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <motion.div
-                  className={`w-16 h-16 bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl transition-shadow`}
-                  whileHover={{ rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <item.icon className="w-8 h-8 text-white" />
-                </motion.div>
-                <motion.div
-                  className="text-2xl font-bold text-gray-900 mb-2"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ delay: index * 0.2 + 0.3, type: "spring", stiffness: 200 }}
-                  viewport={{ once: true }}
-                >
-                  {item.title}
-                </motion.div>
-                <div className="text-gray-600 group-hover:text-gray-700 transition-colors">
-                  {item.desc}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* Testimonials Preview */}
-        <motion.div
+{/*        <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -295,10 +273,10 @@ const Services = () => {
             ))}
           </motion.div>
           <p className="text-lg text-gray-600 italic">
-            "TechBridge Africa a transformé notre entreprise avec des solutions innovantes"
+            "Techbridge Africa a transformé notre entreprise avec des solutions innovantes"
           </p>
           <p className="text-sm text-gray-500 mt-2">- Client satisfait</p>
-        </motion.div>
+        </motion.div>*/}
       </div>
     </section>
   );

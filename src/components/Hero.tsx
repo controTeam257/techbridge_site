@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play, CheckCircle, Sparkles, Zap, Code } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle, Sparkles, Zap, Code, Rocket } from 'lucide-react';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -50,11 +50,11 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative pt-16 bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative pt-16 min-h-screen flex items-center overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
+          className="absolute z-60 top-30 left-10 w-72 h-72 bg-[var(--primary-200)] rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.6, 0.3],
@@ -97,7 +97,7 @@ const Hero = () => {
         className="absolute top-32 right-20 text-white/20"
         animate={floatingAnimation}
       >
-        <Code className="w-8 h-8" />
+        <Code className="w-8 h-8 text-[var(--accent)]" />
       </motion.div>
       <motion.div
         className="absolute bottom-32 left-20 text-white/20"
@@ -108,6 +108,17 @@ const Hero = () => {
       >
         <Zap className="w-6 h-6" />
       </motion.div>
+
+        <motion.div
+        className="absolute top-1/3 left-10 text-white/20"
+        animate={{
+          ...floatingAnimation,
+          transition: { ...floatingAnimation.transition, delay: 2 }
+        }}
+      >
+        <Sparkles className="w-7 h-7 text-[var(--accent)]" />
+      </motion.div>
+
       <motion.div
         className="absolute top-1/2 right-32 text-white/20"
         animate={{
@@ -118,34 +129,31 @@ const Hero = () => {
         <Sparkles className="w-7 h-7" />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-20">
         <motion.div
-          className="grid lg:grid-cols-2 gap-12 items-center"
+          className="grid lg:grid-row-2 gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-8 text-center">
             <motion.div className="space-y-6" variants={itemVariants}>
-              <motion.div
-                className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <CheckCircle className="w-4 h-4 mr-2" />
-                Leader en solutions technologiques en Afrique
-              </motion.div>
               
               <motion.h1 
-                className="text-4xl lg:text-6xl font-bold text-white leading-tight"
+                className="text-3xl lg:text-5xl font-bold text-white flex flex-col leading-tight"
                 variants={itemVariants}
               >
-                Transformez votre entreprise avec{' '}
+                Transformez votre entreprise avec{''}
                 <motion.span
-                  className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent"
+                  className="bg-gradient-to-l 
+                              from-[var(--primary)] 
+                              via-white via-[70%] 
+                              to-[var(--primary)] 
+                              bg-clip-text text-transparent 
+                              text-3xl lg:text-5xl font-extrabold"
                   animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                    backgroundPosition: ['0% 10%', '100% 50%', '0% 10%'],
                   }}
                   transition={{
                     duration: 3,
@@ -153,7 +161,7 @@ const Hero = () => {
                     ease: "linear"
                   }}
                 >
-                  TechBridge Africa
+                  Techbridge Africa
                 </motion.span>
               </motion.h1>
               
@@ -161,17 +169,17 @@ const Hero = () => {
                 className="text-xl text-blue-100 leading-relaxed"
                 variants={itemVariants}
               >
-                Nous offrons des formations de pointe, développons des logiciels sur mesure et facilitons l'intégration d'API pour propulser votre business vers le futur numérique.
+               Profitez de formations, logiciels et API pour faire grandir votre entreprise. 
               </motion.p>
             </motion.div>
 
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col justify-center items-center sm:flex-row gap-4"
               variants={itemVariants}
             >
               <motion.button
                 onClick={scrollToContact}
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold text-lg group shadow-2xl"
+                className="inline-flex text-white items-center px-8 py-3 gradient-primary-btn rounded-full text-lg group shadow-2xl"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 20px 40px rgba(59, 130, 246, 0.4)"
@@ -191,7 +199,7 @@ const Hero = () => {
               
               <motion.button
                 onClick={scrollToServices}
-                className="inline-flex items-center px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold text-lg group backdrop-blur-sm hover:bg-white/10"
+                className="inline-flex items-center px-8 py-3 border-2 border-white/30 text-white rounded-full text-lg group backdrop-blur-sm hover:bg-white/10"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -207,9 +215,9 @@ const Hero = () => {
               variants={itemVariants}
             >
               {[
-                { number: "100+", label: "Projets réalisés", color: "text-blue-400" },
-                { number: "500+", label: "Étudiants formés", color: "text-green-400" },
-                { number: "50+", label: "Entreprises clientes", color: "text-purple-400" }
+                { number: "100+", label: "Projets réalisés", color: "text-green-400" },
+                { number: "500+", label: "Étudiants formés", color: "text-[var(--primary)]" },
+                { number: "50+", label: "Entreprises clientes", color: "text-[var(--accent)]" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -237,25 +245,25 @@ const Hero = () => {
             variants={itemVariants}
           >
             <motion.div
-              className="relative"
+              className="relative mt-10"
               animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-blue-400 to-green-400 rounded-3xl transform rotate-6 opacity-20"
-                animate={{ rotate: [6, 8, 6] }}
+                className="absolute inset-0 bg-gradient-to-br from-[var(--accent)] to-[var(--dark-accent)] rounded-3xl transform rotate-6 opacity-80"
+                animate={{ rotate: [4, 6, 4] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
               <motion.div
-                className="relative bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-8 border border-white/20"
+                className="relative bg-[var(--dark-primary)] rounded-3xl shadow-2xl p-8 border border-white/40"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="space-y-6">
                   {[
-                    { icon: CheckCircle, title: "Formation Certifiante", desc: "Programmes adaptés au marché", color: "blue" },
-                    { icon: CheckCircle, title: "Développement Sur Mesure", desc: "Solutions personnalisées", color: "green" },
-                    { icon: CheckCircle, title: "Intégration d'API", desc: "Connectivité optimale", color: "purple" }
+                    { icon: Rocket, title: "Formation Certifiante", desc: "Programmes adaptés au marché"},
+                    { icon: Rocket, title: "Développement Sur Mesure", desc: "Solutions personnalisées"},
+                    { icon: Rocket, title: "Intégration d'API", desc: "Connectivité optimale"}
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -266,11 +274,11 @@ const Hero = () => {
                       whileHover={{ x: 10 }}
                     >
                       <motion.div
-                        className={`w-12 h-12 bg-${item.color}-500/20 rounded-lg flex items-center justify-center backdrop-blur-sm`}
+                        className={`w-14 h-14 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
-                        <item.icon className={`w-6 h-6 text-${item.color}-400`} />
+                        <item.icon className={`w-6 h-6 text-[var(--accent)]`} />
                       </motion.div>
                       <div>
                         <div className="font-semibold text-white">{item.title}</div>

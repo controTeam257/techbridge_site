@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Award, Globe, TrendingUp, Users, Lightbulb, Heart, Zap } from 'lucide-react';
+import Logo from "/assets/Logos/favicon.png";
+
 
 const About = () => {
   const values = [
@@ -33,7 +35,7 @@ const About = () => {
   const team = [
     {
       initials: "DA",
-      title: "Développeurs Experts",
+      title: "Développeurs éxperts",
       description: "Une équipe de développeurs seniors maîtrisant les technologies modernes",
       color: "blue",
       icon: Users
@@ -78,10 +80,10 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-white relative overflow-hidden">
+    <section id="about" className="py-20 text-white relative overflow-hidden">
       {/* Background Elements */}
       <motion.div
-        className="absolute top-20 left-0 w-72 h-72 bg-blue-100/50 rounded-full blur-3xl"
+        className="absolute top-20 left-0 w-72 h-72 bg-purple-100/10 rounded-full blur-3xl"
         animate={{
           x: [0, 100, 0],
           y: [0, 50, 0],
@@ -93,19 +95,7 @@ const About = () => {
           ease: "easeInOut"
         }}
       />
-      <motion.div
-        className="absolute bottom-20 right-0 w-96 h-96 bg-purple-100/50 rounded-full blur-3xl"
-        animate={{
-          x: [0, -80, 0],
-          y: [0, -40, 0],
-          scale: [1.2, 1, 1.2],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
@@ -116,15 +106,18 @@ const About = () => {
           viewport={{ once: true }}
         >
           {/* Left Content */}
-          <motion.div className="space-y-8" variants={itemVariants}>
+          <motion.div
+            className="space-y-8 order-2 lg:order-1"
+            variants={itemVariants}
+          >
             <div>
               <motion.h2
-                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+                className="text-4xl lg:text-5xl font-bold text-white mb-6 flex justify-center"
                 variants={itemVariants}
               >
-                À Propos de{' '}
+                Qui sommes-
                 <motion.span
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                  className="bg-gradient-to-r from-[var(--primary)] to-[var(--dark-primary)] bg-clip-text text-transparent"
                   animate={{
                     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                   }}
@@ -134,60 +127,96 @@ const About = () => {
                     ease: "linear"
                   }}
                 >
-                  TechBridge Africa
+                  nous?
                 </motion.span>
               </motion.h2>
-              
+
               <motion.p
-                className="text-lg text-gray-600 leading-relaxed mb-6"
+                className="text-lg text-blue-200 leading-relaxed mb-6 text-center"
                 variants={itemVariants}
               >
-                TechBridge Africa est une entreprise technologique innovante basée en Afrique, spécialisée dans la formation professionnelle, le développement de logiciels et l'intégration d'API. Nous sommes passionnés par la transformation digitale du continent africain.
+                Techbridge Africa est une entreprise technologique innovante basée en Afrique,
+                spécialisée dans la formation professionnelle, le développement de logiciels et
+                l'intégration d'API. Nous sommes passionnés par la transformation digitale du
+                continent africain.
               </motion.p>
-              
+
               <motion.p
-                className="text-lg text-gray-600 leading-relaxed"
+                className="text-lg text-blue-200 leading-relaxed text-center"
                 variants={itemVariants}
               >
-                Depuis notre création, nous avons formé plus de 500 professionnels, développé plus de 100 applications et aidé des dizaines d'entreprises à digitaliser leurs processus. Notre équipe d'experts combine expertise technique et connaissance du marché local pour offrir des solutions parfaitement adaptées.
+                Depuis notre création, nous avons formé plus de 500 professionnels, développé
+                plus de 100 applications et aidé des dizaines d'entreprises à digitaliser leurs
+                processus. Notre équipe d'experts combine expertise technique et connaissance
+                du marché local pour offrir des solutions parfaitement adaptées.
               </motion.p>
             </div>
-
-            {/* Mission & Vision */}
-            <motion.div className="space-y-6" variants={itemVariants}>
-              <motion.div
-                className="border-l-4 border-blue-600 pl-6 bg-blue-50/50 p-4 rounded-r-lg"
-                whileHover={{ scale: 1.02, x: 10 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
-                  <Target className="w-5 h-5 mr-2 text-blue-600" />
-                  Notre Mission
-                </h3>
-                <p className="text-gray-600">
-                  Démocratiser l'accès aux technologies modernes en Afrique et former la nouvelle génération de talents technologiques.
-                </p>
-              </motion.div>
-              
-              <motion.div
-                className="border-l-4 border-green-600 pl-6 bg-green-50/50 p-4 rounded-r-lg"
-                whileHover={{ scale: 1.02, x: 10 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
-                  <Zap className="w-5 h-5 mr-2 text-green-600" />
-                  Notre Vision
-                </h3>
-                <p className="text-gray-600">
-                  Devenir le partenaire technologique de référence pour les entreprises africaines en croissance.
-                </p>
-              </motion.div>
-            </motion.div>
           </motion.div>
 
-          {/* Right Content - Values */}
-          <motion.div className="space-y-6" variants={itemVariants}>
-            <motion.h3
+          {/* Right Content - Logo */}
+          <motion.div
+            className="space-y-6 relative order-1 lg:order-2"
+            variants={itemVariants}
+          >
+            <div className="relative flex justify-center items-center">
+              <img
+                src={Logo}
+                alt="Techbridge Africa Logo"
+                className="w-[300px] h-auto glow-image"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+
+
+           {/* Mission & Vision */}
+           <motion.div
+            className="mt-12 flex flex-col sm:flex-row gap-8"
+            variants={itemVariants}
+          >
+            {/* Card 1 */}
+            <motion.div
+              className="flex-1 p-6 rounded-xl neon-card"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
+              <h3 className="text-xl font-bold text-white mb-2 flex items-center">
+                <Target className="w-8 h-8 mr-4 text-[var(--primary)]" />
+                Notre Mission
+              </h3>
+              <p className="text-blue-200">
+                Notre mission est de rendre les technologies modernes accessibles à tous en Afrique,
+                en offrant des opportunités concrètes pour apprendre, innover et créer. Nous voulons
+                former une nouvelle génération de talents capables de transformer le continent grâce
+                à leurs compétences numériques et leur créativité.
+              </p>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div
+              className="flex-1 p-6 rounded-xl neon-card"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <h3 className="text-xl font-bold text-white mb-2 flex items-center">
+                <Zap className="w-8 h-8 mr-4 text-[var(--primary)]" />
+                Notre Vision
+              </h3>
+              <p className="text-blue-200">
+                Notre vision est de devenir le partenaire technologique de confiance pour les
+                entreprises africaines en pleine croissance. Nous aspirons à les accompagner
+                dans leur modernisation, à renforcer leur compétitivité et à les aider à
+                s’imposer sur les marchés locaux et internationaux.
+              </p>
+            </motion.div>
+
+
+          </motion.div>
+
+
+        {/*Will be reused*/}
+
+{/*                    <motion.h3
               className="text-3xl font-bold text-gray-900 mb-8 text-center"
               variants={itemVariants}
             >
@@ -230,12 +259,10 @@ const About = () => {
                   </motion.div>
                 );
               })}
-            </div>
-          </motion.div>
-        </motion.div>
+            </div>*/}
 
         {/* Enhanced Team Section */}
-        <motion.div
+{/*        <motion.div
           className="mt-20"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -323,7 +350,7 @@ const About = () => {
               );
             })}
           </div>
-        </motion.div>
+        </motion.div>*/}
       </div>
     </section>
   );
