@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Github, ArrowUp, Heart } from 'lucide-react';
 
-const Footer = () => {
+const Footer = ({scrolled}) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -38,10 +38,22 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+    <footer className="text-white relative overflow-hidden">
+
+            <motion.button
+                onClick={scrollToTop}
+                id="scrollUpBtn"
+                className={`fixed bottom-10 right-10 w-12 h-12 z-90 bg-[var(--primary)] rounded-full ${scrolled? 'flex' : 'hidden'} items-center justify-center hover:shadow-lg transition-all duration-300`}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <ArrowUp className="w-5 h-5" />
+            </motion.button>
       {/* Background Animation */}
       <motion.div
-        className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+        className="absolute top-0 left-0 w-96 h-96 bg-[var(--primary-100)] rounded-full blur-3xl"
         animate={{
           x: [0, 100, 0],
           y: [0, 50, 0],
@@ -83,13 +95,13 @@ const Footer = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <motion.div
-                className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg shadow-lg"
+                className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-lg shadow-lg"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
                 <Code className="w-6 h-6 text-white" />
               </motion.div>
-              <span className="text-xl font-bold">TechBridge Africa</span>
+              <span className="text-xl font-bold">Techbridge Africa</span>
             </motion.div>
             
             <motion.p
@@ -104,9 +116,9 @@ const Footer = () => {
             
             <div className="flex space-x-4">
               {[
-                { icon: Facebook, color: "hover:bg-blue-600", href: "#" },
-                { icon: Twitter, color: "hover:bg-blue-400", href: "#" },
-                { icon: Linkedin, color: "hover:bg-blue-700", href: "#" },
+                { icon: Facebook, color: "hover:bg-primary-600", href: "#" },
+                { icon: Twitter, color: "hover:bg-primary-400", href: "#" },
+                { icon: Linkedin, color: "hover:bg-primary-700", href: "#" },
                 { icon: Github, color: "hover:bg-gray-700", href: "#" }
               ].map((social, index) => (
                 <motion.a
@@ -145,7 +157,7 @@ const Footer = () => {
                   >
                     {item}
                     <motion.div
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"
                     />
                   </motion.button>
                 </motion.li>
@@ -161,8 +173,7 @@ const Footer = () => {
                 "Formation React & Node.js",
                 "Développement Web",
                 "Applications Mobile",
-                "Intégration API",
-                "Conseil Technologique"
+                "Intégration API"
               ].map((service, index) => (
                 <motion.li
                   key={index}
@@ -171,16 +182,16 @@ const Footer = () => {
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <motion.a
-                    href="#"
+                  <motion.button
+                    onClick={() => scrollToSection('services')}
                     className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
                     whileHover={{ x: 5 }}
                   >
                     {service}
                     <motion.div
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--primary)] group-hover:w-full transition-all duration-300"
                     />
-                  </motion.a>
+                  </motion.button>
                 </motion.li>
               ))}
             </ul>
@@ -191,9 +202,8 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-6">Contact</h3>
             <div className="space-y-4 mb-6">
               {[
-                { icon: Mail, text: "contact@techbridge-africa.com", color: "text-blue-400" },
-                { icon: Phone, text: "+237 6XX XXX XXX", color: "text-green-400" },
-                { icon: MapPin, text: "Douala & Yaoundé, Cameroun", color: "text-purple-400" }
+                { icon: Mail, text: "contact@techbridgeafrica.com", color: "text-[var(--primary)]" },
+                { icon: Phone, text: "+257 77 43 24 85", color: "text-[var(--primary)]" }
               ].map((contact, index) => (
                 <motion.div
                   key={index}
@@ -224,11 +234,11 @@ const Footer = () => {
                 <motion.input
                   type="email"
                   placeholder="Votre email"
-                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
                   whileFocus={{ scale: 1.02 }}
                 />
                 <motion.button
-                  className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-r-lg transition-all duration-300"
+                  className="px-4 py-2 bg-gradient-to-r from-[var(--primary)] to-[var(--dark-primary)] rounded-r-lg transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -252,15 +262,7 @@ const Footer = () => {
               className="text-gray-400 text-sm flex items-center"
               whileHover={{ scale: 1.05 }}
             >
-              © 2024 TechBridge Africa. Tous droits réservés. Fait avec{' '}
-              <motion.span
-                className="mx-1"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
-                <Heart className="w-4 h-4 text-red-500 fill-current" />
-              </motion.span>
-              en Afrique
+              © 2024 Techbridge Africa. Tous droits réservés.
             </motion.div>
             
             <div className="flex items-center space-x-6">
@@ -274,22 +276,11 @@ const Footer = () => {
                   >
                     {link}
                     <motion.div
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 group-hover:w-full transition-all duration-300"
                     />
                   </motion.a>
                 ))}
               </div>
-              
-              <motion.button
-                onClick={scrollToTop}
-                className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <ArrowUp className="w-5 h-5" />
-              </motion.button>
             </div>
           </div>
         </motion.div>

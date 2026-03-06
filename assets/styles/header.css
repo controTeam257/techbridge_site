@@ -1,0 +1,28 @@
+.topbar {
+  background: var(--light-black);
+  border-radius: 35px;
+  position: relative;
+}
+
+/* Top border fade (left → right) */
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 35px;
+  border-top: 1.5px solid var(--primary);
+  mask-image: linear-gradient(to right, var(--dark-black), transparent);
+  -webkit-mask-image: linear-gradient(to right, var(--dark-black), transparent);
+}
+
+/* Bottom border fade (right → left) */
+.topbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 35px;
+  border-bottom: 1.5px solid var(--primary);
+  mask-image: linear-gradient(to left, var(--dark-black), transparent);
+  -webkit-mask-image: linear-gradient(to left, var(--dark-black), transparent);
+}
+

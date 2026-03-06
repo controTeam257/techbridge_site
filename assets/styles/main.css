@@ -1,0 +1,109 @@
+/* For all global custom css styles */
+/* Created by Shalom Irumva */
+
+:root {
+    --primary: rgb(0, 135, 140);
+    --dark-primary: rgb(0, 89, 98);
+    --primary-100: rgba(0, 135, 140, 0.1);
+    --primary-200: rgba(0, 135, 140, 0.2);
+    --primary-400: rgba(0, 135, 140, 0.4);
+    --accent: rgb(255, 213, 19);
+    --accent-100: rgba(255, 213, 19, 0.1);
+    --accent-200: rgba(255, 213, 19, 0.2);
+    --accent-400: rgba(255, 213, 19, 0.4);
+    --dark-accent: rgb(204, 170, 15);
+    --light-black: rgb(20, 26, 40);
+    --lighter-black: rgb(41, 45, 62);
+    --dark-black: rgba(14, 16, 28, 1);
+    --color-sub-white: rgb(220, 220, 220);
+}
+
+@font-face {
+    font-family: 'main-font';
+    src: url('../Roboto.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+* {
+    font-family: "main-font", "sans-serif";
+    font-family: 14px;
+}
+
+/* Custom global classes */
+
+.neon-border {
+    background: var(--light-black);
+}
+
+.neon-border:before,
+.neon-border:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094,
+        #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.neon-border:after {
+    filter: blur(50px);
+}
+
+.bg-primary {
+    background: var(--primary);
+}
+
+.bg-primary-500 {
+    background: rgba(0, 135, 140, 0.5);
+}
+
+.bg-primary-200 {
+    background: rgba(0, 135, 140, 0.2);
+}
+
+.bg-primary\/100 {
+    background: rgb(0 135 140 /0.1);
+}
+
+
+.gradient-primary-btn {
+    background: linear-gradient(135deg, var(--primary), var(--dark-primary));
+    cursor: pointer;
+}
+
+.gradient-primary-btn:hover {
+    background: linear-gradient(135deg, var(--dark-primary), var(--primary));
+    transform: translateY(-2px);
+}
+
+/* Inglowing Neon shadow */
+.neon-card {
+    background: linear-gradient(to right top, var(--light-black) 60%, var(--primary-400));
+    box-shadow: 0px 0px 15px var(--primary-400);
+    transition: .4s ease-in-out;
+}
+
+.glow-image {
+    /* glowing effect */
+    filter: drop-shadow(0 0 20px var(--primary-200));
+}

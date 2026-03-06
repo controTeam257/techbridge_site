@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Code, Zap, BookOpen } from 'lucide-react';
+
+// Logo import
 import Logo from "/assets/logos/logo-white.png";
 
-const Header = ({scrolled}) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,21 +26,18 @@ const Header = ({scrolled}) => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    setTimeout(() => setIsMenuOpen(false), 300);
+    setIsMenuOpen(false);
   };
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed z-90 right-0 left-0 transition-all duration-100 'bg-white/95
-      ${
-        scrolled ? 'top-0 backdrop-blur-lg shadow-xl' : 'bg-[var(--dark-black)] top-3'
-      }`}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`topbar fixed top-5 left-11 right-11 z-50 transition-all duration-500 'backdrop-blur-lg shadow-lg`}
     >
       <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-3">
-        <div className="flex justify-between items-center h-16 pl-4 pr-4">
+        <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
           <motion.div 
@@ -40,20 +48,23 @@ const Header = ({scrolled}) => {
             <motion.div 
               className="cursor-pointer flex items-center justify-center w-12 h-12 bg-[var(--primary)] rounded-full shadow-lg"
             >
-              <img src={Logo} alt="Techbridge Africa Logo" className="w-7 h-7" />
+              <img src={Logo} alt="TechBridge Africa Logo" className="w-7 h-7" />
             </motion.div>
             <span className="text-xl font-bold transition-colors duration-300 text-white">
               Techbridge Africa
             </span>
           </motion.div>
 
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {['Accueil', 'À Propos', 'Services'].map((item, index) => (
+            {['Accueil', 'Services', 'À Propos', 'Contact'].map((item, index) => (
               <motion.button
                 key={item}
                 onClick={() => scrollToSection(item === 'Accueil' ? 'home' : item === 'À Propos' ? 'about' : item.toLowerCase())}
-                className={`relative font-medium transition-colors duration-300 text-white/90 hover:text-white`}
+                className={`relative font-medium transition-colors duration-300 ${
+                  scrolled ? 'text-white/90 hover:text-blue-600' : 'text-white/90 hover:text-white'
+                }`}
                 whileHover={{ y: -2 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -70,7 +81,7 @@ const Header = ({scrolled}) => {
             ))}
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className="text-white px-6 py-2 rounded-3xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 gradient-primary-btn"
+              className="bg-[var(--primary)] text-white px-6 py-2 rounded-3xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -84,7 +95,9 @@ const Header = ({scrolled}) => {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={toggleMenu}
-            className={`md:hidden p-2 rounded-lg transition-colors duration-300 text-white hover:bg-white/10`}
+            className={`md:hidden p-2 rounded-lg transition-colors duration-300 ${
+              scrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+            }`}
             whileTap={{ scale: 0.95 }}
           >
             <AnimatePresence mode="wait">
@@ -118,32 +131,29 @@ const Header = ({scrolled}) => {
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden bg-gray-900 z-50"
+              className="md:hidden bg-white shadow-lg border-t border-gray-100 rounded-b-2xl overflow-hidden"
             >
               <nav className="flex flex-col p-4 space-y-3">
-                {["Accueil","À Propos", "Services", "Contact"].map((item, index) => {
-                  return (
-                    <motion.button
-                      key={item}
-                      onClick={() => scrollToSection(item === 'Accueil' ? 'home' : item === 'À Propos' ? 'about' : item.toLowerCase())}
-                      className="text-left text-white hover:text-[var(--primary)] transition-colors font-medium py-2 px-2 rounded-lg hover:text-[var(--primary)]"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ x: 10 }}
-                    >
-                      {item}
-                    </motion.button>
-                  );
-                })}
+                {['Accueil', 'Services', 'À Propos', 'Contact'].map((item, index) => (
+                  <motion.button
+                    key={item}
+                    onClick={() => scrollToSection(item === 'Accueil' ? 'home' : item === 'À Propos' ? 'about' : item.toLowerCase())}
+                    className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium py-2 px-2 rounded-lg hover:bg-blue-50"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item}
+                  </motion.button>
+                ))}
               </nav>
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
     </motion.header>
   );

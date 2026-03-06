@@ -1,0 +1,11 @@
+input, select, textarea{
+	border-radius: 4px;
+	outline: none;
+	background: var(--lighter-black);
+	caret-color: white;
+	font-style: 14px;
+	color: white !important;
+}
+
+
+

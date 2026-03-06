@@ -1,66 +1,66 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Globe, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Headset, MessageSquare, Invoice } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    service: '',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        company: '',
+        service: '',
+        message: ''
     });
-  };
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Simulation d'envoi avec délai
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsLoading(false);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 4000);
-    setFormData({ name: '', email: '', company: '', service: '', message: '' });
-  };
+    const handleChange = (e: React.ChangeEvent < HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement > ) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  };
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
 
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+        // Simulation d'envoi avec délai
+        await new Promise(resolve => setTimeout(resolve, 2000));
 
-  return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden">
+        setIsLoading(false);
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 4000);
+        setFormData({ name: '', email: '', company: '', service: '', message: '' });
+    };
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 50, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    return (
+        <section id="contact" className="py-20 relative overflow-hidden">
       {/* Animated Background */}
       <motion.div
-        className="absolute top-0 left-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"
+        className="absolute z-80 top-0 left-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"
         animate={{
           x: [0, 100, 0],
           y: [0, 50, 0],
@@ -96,12 +96,12 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+            className="text-4xl lg:text-5xl font-bold text-white mb-4"
             variants={itemVariants}
           >
             Contactez-
             <motion.span
-              className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-[var(--primary)] to-[var(--dark-primary)] bg-clip-text text-transparent"
               animate={{
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
@@ -115,7 +115,7 @@ const Contact = () => {
             </motion.span>
           </motion.h2>
           <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl text-blue-200 max-w-3xl mx-auto"
             variants={itemVariants}
           >
             Prêt à démarrer votre projet ? Notre équipe est là pour vous accompagner dans votre transformation digitale.
@@ -123,7 +123,7 @@ const Contact = () => {
         </motion.div>
 
         <motion.div
-          className="grid lg:grid-cols-2 gap-12"
+          className="grid lg:grid-cols-[2fr,1fr] gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -135,21 +135,21 @@ const Contact = () => {
             variants={itemVariants}
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-xl"
+              className="absolute inset-0"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             />
             
-            <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-white/20">
+            <div className="relative rounded-3xl shadow-xl p-7 border border-white/20">
               <motion.h3
-                className="text-2xl font-bold text-gray-900 mb-6 flex items-center"
+                className="text-2xl font-bold text-white mb-6 flex items-center gap-2"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <MessageSquare className="w-6 h-6 mr-2 text-blue-600" />
-                Demande de Devis
+                <MessageSquare className="w-8 h-8 text-[var(--accent)]" />
+                Demande de devis
               </motion.h3>
               
               <AnimatePresence>
@@ -180,8 +180,8 @@ const Contact = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Nom complet *
+                    <label htmlFor="name" className="block text-sm font-medium text-blue-200 mb-2">
+                      Nom complet (requis)
                     </label>
                     <motion.input
                       type="text"
@@ -190,7 +190,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 transition-all duration-300"
                       placeholder="Votre nom"
                       whileFocus={{ scale: 1.02 }}
                     />
@@ -202,8 +202,8 @@ const Contact = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
+                    <label htmlFor="email" className="block text-sm font-medium text-blue-200 mb-2">
+                      Email (requis)
                     </label>
                     <motion.input
                       type="email"
@@ -212,7 +212,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 transition-all duration-300"
                       placeholder="votre@email.com"
                       whileFocus={{ scale: 1.02 }}
                     />
@@ -226,7 +226,7 @@ const Contact = () => {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     viewport={{ once: true }}
                   >
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="company" className="block text-sm font-medium text-blue-200 mb-2">
                       Entreprise
                     </label>
                     <motion.input
@@ -235,7 +235,7 @@ const Contact = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 transition-all duration-300"
                       placeholder="Nom de votre entreprise"
                       whileFocus={{ scale: 1.02 }}
                     />
@@ -247,8 +247,8 @@ const Contact = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
                   >
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                      Service souhaité *
+                    <label htmlFor="service" className="block text-sm font-medium text-blue-200 mb-2">
+                      Service souhaité (requis)
                     </label>
                     <motion.select
                       id="service"
@@ -256,7 +256,7 @@ const Contact = () => {
                       value={formData.service}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 transition-all duration-300"
                       whileFocus={{ scale: 1.02 }}
                     >
                       <option value="">Sélectionnez un service</option>
@@ -274,8 +274,8 @@ const Contact = () => {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
+                  <label htmlFor="message" className="block text-sm font-medium text-blue-200 mb-2">
+                    Message (requis)
                   </label>
                   <motion.textarea
                     id="message"
@@ -284,48 +284,49 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 transition-all duration-300 resize-none"
                     placeholder="Décrivez votre projet ou vos besoins..."
                     whileFocus={{ scale: 1.02 }}
                   ></motion.textarea>
                 </motion.div>
 
-                <motion.button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold text-lg flex items-center justify-center group shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
-                  whileHover={{ scale: isLoading ? 1 : 1.02 }}
-                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  {isLoading ? (
-                    <motion.div
-                      className="w-6 h-6 border-2 border-white border-t-transparent rounded-full"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    />
-                  ) : (
-                    <>
-                      Envoyer le message
-                      <motion.div
-                        className="ml-2"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <Send className="w-5 h-5" />
-                      </motion.div>
-                    </>
-                  )}
-                </motion.button>
+              <motion.button
+  type="submit"
+  disabled={isLoading}
+  className="w-full lg:w-auto lg:ml-auto bg-gradient-to-r from-[var(--primary)] to-[var(--dark-primary)] text-white py-3 px-6 rounded-md text-md flex items-center justify-center gap-4 group shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
+  whileHover={{ scale: isLoading ? 1 : 1.02 }}
+  whileTap={{ scale: isLoading ? 1 : 0.98 }}
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.6 }}
+  viewport={{ once: true }}
+>
+  {isLoading ? (
+    <motion.div
+      className="w-6 h-6 border-2 border-white border-t-transparent rounded-full"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    />
+  ) : (
+    <>
+      Envoyer la demande
+      <motion.div
+        className="ml-2"
+        animate={{ x: [0, 5, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      >
+        <Send className="w-5 h-5 transform rotate-45" />
+      </motion.div>
+    </>
+  )}
+</motion.button>
+
               </form>
             </div>
           </motion.div>
 
           {/* Contact Info */}
-          <motion.div className="space-y-8" variants={itemVariants}>
+          <motion.div className="space-y-6" variants={itemVariants}>
             {/* Contact Details */}
             <motion.div
               className="relative"
@@ -333,26 +334,25 @@ const Contact = () => {
               transition={{ duration: 0.3 }}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-white to-blue-50 rounded-3xl shadow-xl"
+                className="absolute inset-0 bg-gradient-to-br from-blue-20 to-blue-50 rounded-3xl shadow-xl"
               />
               
-              <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-white/20">
+              <div className="relative bg-[var(--lighter-black)] rounded-3xl shadow-xl p-7">
                 <motion.h3
-                  className="text-2xl font-bold text-gray-900 mb-6 flex items-center"
+                  className="text-2xl font-bold text-white mb-6 flex items-center"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <Globe className="w-6 h-6 mr-2 text-blue-600" />
-                  Informations de Contact
+                  <Headset className="w-8 h-8 mr-2 text-[var(--accent)]" />
+                  Contacts
                 </motion.h3>
                 
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {[
-                    { icon: Mail, title: "Email", details: ["contact@techbridge-africa.com", "info@techbridge-africa.com"], color: "blue" },
-                    { icon: Phone, title: "Téléphone", details: ["+237 6XX XXX XXX", "+237 6XX XXX XXX"], color: "green" },
-                    { icon: MapPin, title: "Adresse", details: ["Douala, Cameroun", "Yaoundé, Cameroun"], color: "purple" }
+                    { icon: Mail, title: "Email", details: ["contact@techbridgeafrica.com", "info@techbridgeafrica.com"], color: "[var(--primary)]" },
+                    { icon: Phone, title: "Téléphone", details: ["+257 77 43 24 85"], color: "[var(--primary)]" }
                   ].map((contact, index) => (
                     <motion.div
                       key={index}
@@ -364,18 +364,18 @@ const Contact = () => {
                       whileHover={{ x: 10 }}
                     >
                       <motion.div
-                        className={`w-12 h-12 bg-gradient-to-br from-${contact.color}-500 to-${contact.color}-600 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow`}
+                        className={`w-10 h-10 bg-[var(--dark-black)] rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
-                        <contact.icon className="w-6 h-6 text-white" />
+                        <contact.icon className={`w-5 h-5 text-${contact.color}`} />
                       </motion.div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 group-hover:text-gray-800 transition-colors">
+                        <h4 className="font-normal text-white transition-colors">
                           {contact.title}
                         </h4>
                         {contact.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600 group-hover:text-gray-700 transition-colors">
+                          <p key={detailIndex} className="text-blue-200 text-sm transition-colors">
                             {detail}
                           </p>
                         ))}
@@ -393,26 +393,19 @@ const Contact = () => {
               transition={{ duration: 0.3 }}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl shadow-xl"
-                animate={{
-                  background: [
-                    "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)",
-                    "linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%)",
-                    "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)"
-                  ]
-                }}
+                className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] to-[var(--dark-primary)] rounded-3xl shadow-xl"
                 transition={{ duration: 4, repeat: Infinity }}
               />
               
-              <div className="relative rounded-3xl shadow-xl p-8 text-white">
+              <div className="relative rounded-3xl shadow-xl p-7 text-white">
                 <motion.h3
-                  className="text-2xl font-bold mb-6 flex items-center"
+                  className="text-2xl font-bold mb-6 flex items-center gap-2"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <Clock className="w-6 h-6 mr-2" />
+                  <Clock className="w-8 h-8 text-[var(--accent)]" />
                   Horaires d'ouverture
                 </motion.h3>
                 
@@ -438,7 +431,7 @@ const Contact = () => {
                 </div>
                 
                 <motion.div
-                  className="mt-6 p-4 bg-white/20 backdrop-blur-sm rounded-lg"
+                  className="mt-6 p-4 bg-gradient-to-r from-[var(--accent-100)] to-[var(--accent-200)] backdrop-blur-lg rounded-lg border border-[var(--accent-400)]"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
@@ -455,7 +448,7 @@ const Contact = () => {
         </motion.div>
       </div>
     </section>
-  );
+    );
 };
 
 export default Contact;
