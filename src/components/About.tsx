@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Award, Globe, TrendingUp, Users, Lightbulb, Heart, Zap } from 'lucide-react';
-import Logo from "/assets/Logos/favicon.png";
+// import Logo from "/assets/Logos/favicon.png";
 
 
 const About = () => {
@@ -159,11 +159,11 @@ const About = () => {
             variants={itemVariants}
           >
             <div className="relative flex justify-center items-center">
-              <img
+              <!-- <img
                 src={Logo}
                 alt="Techbridge Africa Logo"
                 className="w-[300px] h-auto glow-image"
-              />
+              /> -->
             </div>
           </motion.div>
         </motion.div>
